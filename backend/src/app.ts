@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
 import errorHandler from './middlewares/error-handler';
+import rareLimiter from './middlewares/rare-limit';
 import { errorLogger, requestLogger } from './middlewares/loggers';
 import { PORT, DB_ADDRESS } from './config';
 import router from './routes';
@@ -23,6 +24,7 @@ app.use('/', router);
 
 app.use(errorLogger);
 app.use(errorHandler);
+app.use(rareLimiter);
 
 app.listen(PORT, () => {
   console.log(`Beginning of listening port ${PORT.toString()}`);

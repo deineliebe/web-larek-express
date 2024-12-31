@@ -49,6 +49,11 @@ export const addProduct = async (req: Request, res: Response, next: NextFunction
           ),
         );
       }
+      if (error instanceof Error && error.message.includes('Validation failed')) {
+        return next(
+          new BadRequestError(error.message),
+        );
+      }
       return next(error);
     });
 };

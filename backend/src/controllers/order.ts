@@ -61,7 +61,7 @@ const addOrder = async (req: Request, res: Response, next: NextFunction) => {
   return Order.create({
     payment, email, phone, address, total, items,
   })
-    .then(() => res.status(201).json({ id: faker.string.uuid(), total }))
+    .then(() => res.status(200).json({ id: faker.string.uuid(), total }))
     .catch((error) => next(error));
 };
 
